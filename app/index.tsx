@@ -1,19 +1,29 @@
-import { Stack, Link } from 'expo-router';
-
-import { Button } from '~/components/Button';
-import { Container } from '~/components/Container';
-import { ScreenContent } from '~/components/ScreenContent';
+import { Text, View, StyleSheet, Button } from "react-native";
+import { Link, router } from 'expo-router';
 
 export default function Home() {
-  return (
-    <>
-      <Stack.Screen options={{ title: 'Home' }} />
-      <Container>
-        <ScreenContent path="app/index.tsx" title="Home" />
-        <Link href={{ pathname: '/details', params: { name: 'Dan' } }} asChild>
-          <Button title="Show Details" />
-        </Link>
-      </Container>
-    </>
+
+  function handleNavigation(){
+    
+    router.replace('/dashboard');
+  }
+
+  return(
+    <View style={styles.container}>
+      <Text>Página HOME</Text>
+      <Link href={'/profile'}>Ir para tela Profile</Link>
+      <Link href={'/user/12345'}>Ir para tela User</Link>
+
+      <Button title="Navegar para o Painel" onPress={handleNavigation} />
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+});
